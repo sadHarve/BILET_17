@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список кафе</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .add-btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .add-btn:hover {
+            background: #5a67d8;
+        }
+        .cafe-item {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #667eea;
+        }
+        .cafe-info {
+            flex: 1;
+        }
+        .cafe-name {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .cafe-details {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .delete-btn {
+            background: #e53e3e;
+            color: white;
+            padding: 5px 15px;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .delete-btn:hover {
+            background: #c53030;
+        }
+        .empty {
+            text-align: center;
+            color: #999;
+            padding: 40px 0;
+        }
+        .rating {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+        }
+        .rating-high { background: #48bb78; }
+        .rating-mid { background: #ed8936; }
+        .rating-low { background: #e53e3e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>☕ Список кафе</h1>
+        <a href="/add" class="add-btn">➕ Добавить кафе</a>
+        
+        <div>
+            {% for cafe in cafes %}
+            <div class="cafe-item">
+                <div class="cafe-info">
+                    <div class="cafe-name">{{ cafe.name }}</div>
+                    <div class="cafe-details">
+                        {{ cafe.cuisine }} | 
+                        {% if cafe.rating >= 4 %}
+                            <span class="rating rating-high">★ {{ cafe.rating }}</span>
+                        {% elif cafe.rating >= 3 %}
+                            <span class="rating rating-mid">★ {{ cafe.rating }}</span>
+                        {% else %}
+                            <span class="rating rating-low">★ {{ cafe.rating }}</span>
+                        {% endif %}
+                        | 💰 {{ cafe.avg_check }} ₽
+                    </div>
+                </div>
+                <a href="/delete/{{ loop.index0 }}" class="delete-btn" 
+                   onclick="return confirm('Точно удалить?')">Удалить</a>
+            </div>
+            {% else %}
+            <div class="empty">
+                <p>😕 Пока нет кафе</p>
+                <p><a href="/add">Добавь первое!</a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

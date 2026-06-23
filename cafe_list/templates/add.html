@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить кафе</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+        }
+        .btn-save {
+            background: #667eea;
+            color: white;
+        }
+        .btn-save:hover {
+            background: #5a67d8;
+        }
+        .btn-back {
+            background: #e2e8f0;
+            color: #333;
+        }
+        .btn-back:hover {
+            background: #cbd5e0;
+        }
+        .hint {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>➕ Новое кафе</h1>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label>Название кафе</label>
+                <input type="text" name="name" placeholder="Например: Кофе Хаус" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Тип кухни</label>
+                <input type="text" name="cuisine" placeholder="Например: Итальянская" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Рейтинг (0-5)</label>
+                <input type="number" name="rating" step="0.1" min="0" max="5" placeholder="4.5" required>
+                <div class="hint">Пример: 4.5</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Средний чек (₽)</label>
+                <input type="number" name="avg_check" step="100" min="0" placeholder="1500" required>
+                <div class="hint">Пример: 1500</div>
+            </div>
+            
+            <div class="btn-group">
+                <a href="/" class="btn btn-back">Назад</a>
+                <button type="submit" class="btn btn-save">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
